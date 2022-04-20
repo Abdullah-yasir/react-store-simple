@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
 body {
+	box-sizing: border-box;
 	perspective: 800px;
 	height: 100vh;
 	margin: 0;
@@ -177,7 +178,8 @@ body .login_fields__submit .forgot {
 body .login_fields__submit .forgot a {
 	color: #606479;
 }
-body .login_fields__submit input {
+body .login_fields__submit input,
+button {
 	border-radius: 50px;
 	background: transparent;
 	padding: 10px 50px;
@@ -188,11 +190,13 @@ body .login_fields__submit input {
 	transition-property: background, color;
 	transition-duration: 0.2s;
 }
-body .login_fields__submit input:focus {
+body .login_fields__submit input:focus,
+button:focus {
 	box-shadow: none;
 	outline: none;
 }
-body .login_fields__submit input:hover {
+body .login_fields__submit input:hover,
+button:hover {
 	color: white;
 	background: #dc6180;
 	cursor: pointer;
@@ -200,36 +204,35 @@ body .login_fields__submit input:hover {
 	transition-duration: 0.2s;
 }
 
-/* Color Schemes */
-.love {
-	position: absolute;
-	right: 20px;
-	bottom: 0px;
-	font-size: 11px;
-	font-weight: normal;
-}
-.love p {
-	color: white;
-	font-weight: normal;
-	font-family: 'Open Sans', sans-serif;
-}
-.love a {
-	color: white;
-	font-weight: 700;
-	text-decoration: none;
-}
-.love img {
-	position: relative;
-	top: 3px;
-	margin: 0px 4px;
-	width: 10px;
+body .input {
+	color: #afb1be;
+	min-width: 100px;
+	background: #32364a;
+	padding: 10px 65px;
+	border-top: 2px solid #393d52;
+	border-bottom: 2px solid #393d52;
+	border-right: none;
+	border-left: none;
+	outline: none;
+	font-family: 'Gudea', sans-serif;
+	box-shadow: none;
 }
 
-.brand {
-	position: absolute;
-	left: 20px;
-	bottom: 14px;
+body .bg-container {
+	border-top: 2px solid #d8312a;
+	padding-top: 2px;
+	background: #35394a;
+	color: rgba(255, 255, 255, 0.822);
 }
-.brand img {
-	width: 30px;
+
+body .input-icon-container {
+	position: relative;
+}
+
+.input-icon-container .icon {
+	position: absolute;
+	z-index: 1;
+	left: 36px;
+	top: 8px;
+	opacity: 0.5;
 }
