@@ -5,13 +5,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 
 import Login from './pages/auth/Login';
-import Listing from './pages/store/Listing';
+import Listing from './pages/store/Products';
 import Signup from './pages/auth/Signup';
 import CreateStore from './pages/store/CreateStore';
 import MyStore from './pages/store/MyStore';
 import Cart from './pages/store/Cart';
 import HeaderLayout from './layouts/HeaderLayout';
 import Comparison from './pages/store/Comparison';
+import Stores from './pages/store/Stores';
 
 export const actionTypes = {
 	ADD_TO_CART: 'ADD_TO_CART',
@@ -84,8 +85,11 @@ function App() {
 		{ path: '/', Component: Login },
 		{ path: '/login', Component: Login },
 		{ path: '/register', Component: Signup },
+	];
 
+	const protectedRoutes = [
 		{ path: '/listing', Component: Listing },
+		{ path: '/stores', Component: Stores },
 		{ path: '/create-store', Component: CreateStore },
 		{ path: '/compare', Component: Comparison },
 		{ path: '/store', Component: MyStore },
@@ -109,19 +113,28 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<HeaderLayout>
-				<Routes>
-					{routes.map(({ path, Component }) => (
-						<Route
-							key={path}
-							path={path}
-							element={
+			<Routes>
+				{routes.map(({ path, Component }) => (
+					<Route
+						key={path}
+						path={path}
+						element={
+							<Component state={state} dispatch={dispatch} />
+						}
+					/>
+				))}
+				{protectedRoutes.map(({ path, Component }) => (
+					<Route
+						key={path}
+						path={path}
+						element={
+							<HeaderLayout>
 								<Component state={state} dispatch={dispatch} />
-							}
-						/>
-					))}
-				</Routes>
-			</HeaderLayout>
+							</HeaderLayout>
+						}
+					/>
+				))}
+			</Routes>
 		</BrowserRouter>
 	);
 }

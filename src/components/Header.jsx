@@ -5,7 +5,6 @@ const links = [
 	{ label: 'Home', path: '/listing' },
 	{ label: 'Cart', path: '/cart' },
 	{ label: 'Compare', path: '/compare' },
-	{ label: 'Create Store', path: '/create-store' },
 	{ label: 'Stores', path: '/stores' },
 ];
 
