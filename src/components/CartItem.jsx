@@ -1,6 +1,7 @@
 import React from 'react';
+import Button from './Button';
 
-const Product = props => {
+const CartItem = props => {
 	const { image, title, price, category, description, onClick } = props;
 
 	return (
@@ -35,7 +36,7 @@ const Product = props => {
 					{category}
 				</span>
 			</div>
-			<div className="product-info">
+			<div className="CartItem-info">
 				<h3>{title}</h3>
 				<span>${price}</span>
 				<p
@@ -46,12 +47,10 @@ const Product = props => {
 					}}>
 					{description}
 				</p>
-				<button className="add-cart" onClick={onClick}>
-					Add to Cart
-				</button>
+				<Button onClick={onClick} label="Remove" />
 			</div>
 		</div>
 	);
 };
 
-export default Product;
+export default CartItem;

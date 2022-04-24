@@ -190,6 +190,16 @@ button {
 	transition-property: background, color;
 	transition-duration: 0.2s;
 }
+
+button:disabled {
+	font-style: italic;
+	pointer-events: none;
+	opacity: 0.5;
+}
+button:disabled button:hover {
+	cursor: not-allowed;
+}
+
 body .login_fields__submit input:focus,
 button:focus {
 	box-shadow: none;
@@ -205,9 +215,8 @@ button:hover {
 }
 
 body .input {
-	color: #afb1be;
+	color: #32364a;
 	min-width: 100px;
-	background: #32364a;
 	padding: 10px 65px;
 	border-top: 2px solid #393d52;
 	border-bottom: 2px solid #393d52;
@@ -235,4 +244,25 @@ body .input-icon-container {
 	left: 36px;
 	top: 8px;
 	opacity: 0.5;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 0 20px;
+}
+
+.header a {
+	color: rgba(255, 255, 255, 0.822);
+	text-decoration: none;
+	padding: 10px;
+}
+
+td {
+	background-color: #393d52;
+	color: rgba(255, 255, 255, 0.822);
+	padding: 5px;
 }
