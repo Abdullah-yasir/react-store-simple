@@ -7,6 +7,7 @@ const Product = props => {
 		title,
 		price,
 		category,
+		rating,
 		description,
 		onClick,
 		onClickCompare,
@@ -48,7 +49,8 @@ const Product = props => {
 			</div>
 			<div className="product-info">
 				<h3>{title}</h3>
-				<span>${price}</span>
+				<span>{price}</span>
+				<span>Rating: {rating}</span>
 				<p
 					style={{
 						fontSize: 14,

@@ -13,6 +13,7 @@ import Cart from './pages/store/Cart';
 import HeaderLayout from './layouts/HeaderLayout';
 import Comparison from './pages/store/Comparison';
 import Stores from './pages/store/Stores';
+import { api } from './config/api';
 
 // defined action types as constants
 export const actionTypes = {
@@ -33,12 +34,12 @@ const reducer = (state = {}, action) => {
 				products: action.payload.map(prod => ({
 					id: prod.id,
 					image: prod.image,
-					title: prod.title,
-					description: prod.description,
-					rating: prod.rating.rate,
-					ratingCount: prod.rating.count,
-					price: prod.price,
+					title: prod.name,
+					rating: prod.ratings,
+					price: prod.prices,
+					website: prod.website,
 					category: prod.category,
+					description: prod.description,
 				})),
 			};
 		case actionTypes.ADD_TO_CART:
@@ -99,7 +100,7 @@ function App() {
 
 	React.useEffect(() => {
 		axios
-			.get('https://fakestoreapi.com/products')
+			.post(api.search, { website: 'paklap' })
 			.then(res => {
 				dispatch({
 					type: actionTypes.SET_PRODUCTS,
