@@ -56,7 +56,7 @@ export default function Stores({ state }) {
 							width: '100%',
 							borderBottom: '1px solid white',
 						}}>
-						<h2>{store.storeName}</h2>
+						<h2>{store.title}</h2>
 						<p>{store.description}</p>
 					</div>
 				))}

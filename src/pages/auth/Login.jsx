@@ -1,17 +1,34 @@
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../config/api';
 
 import { runJQueryCode } from './script';
 
 export default function Login(props) {
 	const navigate = useNavigate();
 
+	const [email, setEmail] = React.useState('');
+	const [password, setPassword] = React.useState('');
+
 	React.useEffect(() => {
 		runJQueryCode();
 	}, []);
 
 	const login = () => {
-		navigate('/listing');
+		if (email !== '' && password !== '') {
+			axios
+				.post(api.login, { username: email, password })
+				.then(res => {
+					navigate('/listing');
+				})
+				.catch(err => {
+					alert(err.message);
+					console.log(err);
+				});
+		} else {
+			alert('Please fill in all fields');
+		}
 	};
 
 	return (
@@ -28,7 +45,12 @@ export default function Login(props) {
 								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"
 							/>
 						</div>
-						<input placeholder="Username" type="text" />
+						<input
+							placeholder="Email"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
+							type="text"
+						/>
 
 						<div className="validation">
 							<img
@@ -44,7 +66,12 @@ export default function Login(props) {
 								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"
 							/>
 						</div>
-						<input placeholder="Password" type="password" />
+						<input
+							placeholder="Password"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+							type="password"
+						/>
 						<div className="validation">
 							<img
 								alt="some img"

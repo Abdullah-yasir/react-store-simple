@@ -1,10 +1,16 @@
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../config/api';
 
 import { runJQueryCode } from './script';
 
 export default function Signup() {
 	const navigate = useNavigate();
+
+	const [email, setEmail] = React.useState('');
+	const [password, setPassword] = React.useState('');
+	const [confirmPassword, setConfirmPassword] = React.useState('');
 
 	React.useEffect(() => {
 		runJQueryCode();
@@ -12,6 +18,23 @@ export default function Signup() {
 
 	const login = () => {
 		navigate('/login');
+	};
+
+	const register = () => {
+		if (email !== '' && password !== '' && confirmPassword !== '') {
+			if (password === confirmPassword) {
+				axios
+					.post(api.register, { username: email, password })
+					.catch(err => {
+						alert(err.message);
+						console.log(err);
+					});
+			} else {
+				alert('Passwords do not match');
+			}
+		} else {
+			alert('Please fill in all fields');
+		}
 	};
 
 	return (
@@ -32,23 +55,12 @@ export default function Signup() {
 								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"
 							/>
 						</div>
-						<input placeholder="Username" type="text" />
-
-						<div className="validation">
-							<img
-								alt="some img"
-								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png"
-							/>
-						</div>
-					</div>
-					<div className="login_fields__user">
-						<div className="icon">
-							<img
-								alt="some img"
-								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png"
-							/>
-						</div>
-						<input placeholder="Email" type="text" />
+						<input
+							placeholder="Email"
+							value={email}
+							onChange={e => setEmail(e.target.value)}
+							type="text"
+						/>
 
 						<div className="validation">
 							<img
@@ -64,7 +76,12 @@ export default function Signup() {
 								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"
 							/>
 						</div>
-						<input placeholder="Password" type="password" />
+						<input
+							placeholder="Password"
+							value={password}
+							onChange={e => setPassword(e.target.value)}
+							type="password"
+						/>
 						<div className="validation">
 							<img
 								alt="some img"
@@ -79,7 +96,12 @@ export default function Signup() {
 								src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png"
 							/>
 						</div>
-						<input placeholder="Retype Password" type="password" />
+						<input
+							placeholder="Retype Password"
+							value={confirmPassword}
+							onChange={e => setConfirmPassword(e.target.value)}
+							type="password"
+						/>
 						<div className="validation">
 							<img
 								alt="some img"
@@ -88,7 +110,8 @@ export default function Signup() {
 						</div>
 					</div>
 					<div className="login_fields__submit">
-						<input type="submit" value="Register" />
+						{/* <input type="submit" onClick={register} value="Register" /> */}
+						<button onClick={register}>Register</button>
 					</div>
 				</div>
 				<div className="success">

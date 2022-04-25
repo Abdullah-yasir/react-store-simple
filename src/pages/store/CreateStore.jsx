@@ -12,7 +12,7 @@ const CreateStore = ({ state, dispatch }) => {
 		dispatch({
 			type: actionTypes.CREATE_NEW_STORE,
 			payload: {
-				storeName,
+				title: storeName,
 				description,
 			},
 		});
