@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../config/api';
-
+import $ from 'jquery';
 import { runJQueryCode } from './script';
 
 export default function Login(props) {
@@ -20,6 +20,9 @@ export default function Login(props) {
 			axios
 				.post(api.login, { username: email, password })
 				.then(res => {
+					setTimeout(function () {
+						$('.success').fadeIn();
+					}, 3200);
 					navigate('/listing');
 				})
 				.catch(err => {

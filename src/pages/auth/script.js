@@ -20,9 +20,6 @@ export function runJQueryCode() {
             $('.login').removeClass('test')
             $('.login div').fadeOut(123);
         }, 2800);
-        setTimeout(function () {
-            $('.success').fadeIn();
-        }, 3200);
     });
 
     $('input[type="text"],input[type="password"]').focus(function () {

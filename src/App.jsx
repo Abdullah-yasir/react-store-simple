@@ -100,7 +100,11 @@ function App() {
 
 	React.useEffect(() => {
 		axios
-			.post(api.search, { website: 'paklap' })
+			.post(api.search, {
+				website: 'paklap',
+				query: 'core i5',
+				category: 'laptops',
+			})
 			.then(res => {
 				dispatch({
 					type: actionTypes.SET_PRODUCTS,
