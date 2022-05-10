@@ -7,9 +7,11 @@ export default function HeaderLayout({ children, onSearch, dispatch }) {
 			<Header onSearch={onSearch} dispatch={dispatch} />
 			<div
 				style={{
-					height: 'calc(100vh - 64px)',
+					height: '100vh',
 					width: '80%',
 					margin: '0 auto',
+					overflow: 'auto',
+					paddingBotton: '100px',
 				}}>
 				{children}
 			</div>
