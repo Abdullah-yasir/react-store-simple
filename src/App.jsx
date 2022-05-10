@@ -24,10 +24,13 @@ export const actionTypes = {
 	LOGIN: 'LOGIN',
 	REGISTER: 'REGISTER',
 	COMPARE: 'COMPARE',
+	SET_CATEGORY: 'SET_CATEGORY',
 };
 
 const reducer = (state = {}, action) => {
 	switch (action.type) {
+		case actionTypes.SET_CATEGORY:
+			return { ...state, category: action.payload };
 		case actionTypes.SET_PRODUCTS:
 			return {
 				...state,
@@ -100,7 +103,7 @@ function App() {
 
 	React.useEffect(() => {
 		axios
-			.post(api.search, {
+			.get(api.products, {
 				website: 'paklap',
 				query: 'core i5',
 				category: 'laptops',
@@ -134,7 +137,7 @@ function App() {
 						key={path}
 						path={path}
 						element={
-							<HeaderLayout>
+							<HeaderLayout state={state} dispatch={dispatch}>
 								<Component state={state} dispatch={dispatch} />
 							</HeaderLayout>
 						}

@@ -55,45 +55,22 @@ export default function Listing({ state, dispatch }) {
 
 	return (
 		<>
-			<div className="input-icon-container">
-				<div className="icon">
-					<img
-						alt="some img"
-						src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/search_icon.png"
+			<BgContainer>
+				<div className="input-icon-container" style={{ width: '100%' }}>
+					<div className="icon">
+						<img
+							alt="some img"
+							src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/search_icon.png"
+						/>
+					</div>
+					<input
+						style={{ width: '100%' }}
+						className="input"
+						placeholder="Filter"
+						type="text"
+						onChange={onLiveSerach}
 					/>
 				</div>
-				<input
-					className="input"
-					placeholder="Search"
-					type="text"
-					onChange={onLiveSerach}
-				/>
-			</div>
-			<div>
-				<Input
-					placeholder="Keyword"
-					value={query}
-					onChange={e => setQuery(e.target.value)}
-					type="text"
-				/>
-				<Input
-					placeholder="Website"
-					value={website}
-					onChange={e => setWebsite(e.target.value)}
-					type="text"
-				/>
-
-				<select
-					name="Category"
-					value={category}
-					onChange={e => setCategory(e.target.value)}>
-					{categories.map(category => (
-						<option value={category}>{category}</option>
-					))}
-				</select>
-				<Button label="Search" onClick={onServerSearch} />
-			</div>
-			<BgContainer>
 				{searched.map(product => (
 					<Product
 						key={product.id}
